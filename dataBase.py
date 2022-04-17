@@ -10,6 +10,11 @@ def add_anomaly(detector_id, anomaly_id, rate, x, y):
     con.commit()
 
 
+def add_right_anomaly(anomaly_id, coord_x, coord_y, rate):
+    cursor.execute('''INSERT INTO right_anomalies VALUES (?, ?, ?, ?)''', (anomaly_id, coord_x, coord_y, rate))
+    con.commit()
+
+
 def add_anomalies(data):
     for detector in data:
         for swan in detector['swans']:
@@ -27,6 +32,11 @@ def get_all_rates_of_anomaly(anomaly_id):
 
 def get_anomaly_table():
     line = cursor.execute('''SELECT * FROM anomalies''').fetchall()
+    return line
+
+
+def get_all_anomalies():
+    line = cursor.execute('''SELECT DISTINCT anomaly_id FROM anomalies''').fetchall()
     return line
 
 
