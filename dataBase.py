@@ -20,6 +20,11 @@ def add_anomalies(data):
                         detector['coords'][1])
 
 
+def get_all_rates_of_anomaly(anomaly_id):
+    line = cursor.execute('''SELECT * FROM anomalies WHERE anomaly_id=?''', (anomaly_id,)).fetchall()
+    return line
+
+
 def clear_db():
     cursor.execute('DELETE FROM anomalies')
     con.commit()
