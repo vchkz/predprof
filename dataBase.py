@@ -25,6 +25,11 @@ def get_all_rates_of_anomaly(anomaly_id):
     return line
 
 
+def get_anomaly_table():
+    line = cursor.execute('''SELECT * FROM anomalies''').fetchall()
+    return line
+
+
 def clear_db():
     cursor.execute('DELETE FROM anomalies')
     con.commit()
